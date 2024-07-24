@@ -1,27 +1,24 @@
 import { useState, useEffect } from "react";
 
-export default function useCounter() {
-    debugger
+export default function useCounter(delay) {
   const [count, setCount] = useState(0);
-    console.log("RENDERS");
-    console.log(count)
+  console.log(delay)
   useEffect(() => {
     // runs after component renders on the screen
-    debugger
     const id = setInterval(() => {
       
         console.log("is this running")
         setCount((prev)=>{
             return prev+1
         });
-    }, 5000);
+    }, delay);
 
     return function () {
-        console.log("unmounts component")
         // clear timeout 
+        // runs when  component going to unmount
         clearInterval(id)
     };
-  }, []);
+  }, [delay]);
 
   
 
